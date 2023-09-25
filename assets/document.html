@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document Tutorial</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="generation-of-a-map-and-execution-of-joint-simulation">Generation of a map and execution of joint simulation</h1>
+<p>This document tells how to use ROADGEN to generate a map and how to edit generated map to execute joint simulation by simulator and automatic driving platform.</p>
+<h2 id="1-use-roadgen-to-generate-map-file">1. Use ROADGEN to generate map file</h2>
+<p>ROADGEN is the method we provide in the article to generate map files in the format of Matlab. It can generate diverse map files in short time and can cover all the road commponent we defined.</p>
+<h3 id="a-clone-the-repo-of-the-roadgen">A. Clone the repo of the <a href="https://github.com/roadgen/RoadGen">ROADGEN</a></h3>
+<pre class="hljs"><code><div>git clone https://github.com/roadgen/RoadGen.git
+</div></code></pre>
+<h3 id="b-edit-output-information-and-run-the-roadgen">B. Edit output information and run the ROADGEN</h3>
+<h4 id="a-set-map-file-output-directory-in-settinginfopy-and-set-graph-file-output-directory-in-compile-function-of-mainpy">a. Set map file output directory in <code>/setting/info.py</code> and set graph file output directory in <code>compile</code> function of <code>main.py</code>.</h4>
+<h4 id="b-run-roadgen-in-terminal-and-you-can-change-name-of-log-file">b. Run ROADGEN in terminal and you can change name of log file.</h4>
+<pre class="hljs"><code><div>python python/main.py &gt; run.log &gt;2&amp;1 &amp;
+</div></code></pre>
+<h4 id="c-get-map-file-named-agmm-in-the-output-directory">c. Get map file named <code>AGM.m</code> in the output directory.</h4>
+<h2 id="2-format-transformation-of-generated-map-file">2. Format transformation of generated map file</h2>
+<h3 id="a-generate-roadrunner-file">A. Generate RoadRunner file</h3>
+<p>Execute the <code>AGM.m</code> file in matlab and get <code>.rrhd</code> file which can import into RoadRunner to edit.</p>
+<h3 id="b-edit-scene-and-scenario-in-roadrunner">B. Edit scene and scenario in RoadRunner</h3>
+<h4 id="a-import-rrhd-file-into-roadrunner-library-and-add-it-into-scene">a. Import <code>.rrhd</code> file into RoadRunner library and add it into scene.</h4>
+<h4 id="b-build-scene-via-clicking-the-button-in-the-left-sidebar-of-the-window">b. Build scene via clicking the button in the left sidebar of the window.</h4>
+<h4 id="c-you-can-export-hd-map-file-and-3d-scene-asset-via-file---export-by-clicking-apollo-you-can-export-hd-map-in-the-format-of-bin-and-xml-which-can-be-used-in-apollo-by-clicking-unity-youcan-export-3d-scene-asset-in-the-format-of-fbx-which-can-be-editted-in-unity-and-hd-map-file-in-the-format-of-xodr-which-can-be-imported-into-unity-to-combine-with-3d-scene">c. You can export HD Map file and 3D scene asset via <code>File</code> -&gt; <code>Export</code>. By clicking <code>Apollo</code>, you can export HD Map in the format of <code>.bin</code> and <code>.xml</code> which can be used in Apollo. By clicking <code>Unity</code>, youcan export 3D Scene asset in the format of <code>.fbx</code> which can be editted in Unity and HD Map file in the format of <code>.xodr</code> which can be imported into Unity to combine with 3D Scene.</h4>
+<h4 id="d-you-can-also-test-the-scene-built-before-in-the-scenario-editing-click-the-button-in-the-upper-right-corner-add-a-vehicle-on-the-road-and-set-a-destination-in-the-running-module-you-can-test-the-execution-of-the-simulated-road">d. You can also test the scene built before in the <code>Scenario Editing</code>. Click the button in the upper right corner. Add a vehicle on the road and set a destination, in the running module, you can test the execution of the simulated road.</h4>
+<h3 id="cedit-3d-scene-in-unity">C.Edit 3D Scene in Unity</h3>
+<h4 id="a-clone-lgsvl-simulator-and-use-correct-version-of-unity-to-open-the-repo-if-you-can-see-the-simulator-button-appears-in-the-toolbar-you-opened-lgsvl-simulator-successfully-in-unity-detailed-steps-can-be-found-in-the-repo-of-lgsvl-simulator">a. Clone <a href="https://github.com/lgsvl/simulator"><em>LGSVL Simulator</em></a> and use correct version of Unity to open the repo. If you can see the <code>Simulator</code> button appears in the toolbar, you opened <em>LGSVL Simulator</em> successfully in Unity. Detailed steps can be found in the repo of  <em>LGSVL Simulator</em>.</h4>
+<pre class="hljs"><code><div>git clone https://github.com/lgsvl/simulator.git
+</div></code></pre>
+<h4 id="b-import-generated-fbx-file-into-unity-and-extract-textures-and-materials-in-the-right-panel-of-attributes">b. Import generated <code>.fbx</code> file into Unity and extract textures and materials in the right panel of attributes.</h4>
+<h4 id="c-import-generated-xodr-file-into-unity-and-adjust-rotation-of-the-hd-map-to-totally-cover-the-fbx-file-in-the-simulated-world">c. Import generated <code>.xodr</code> file into Unity and adjust rotation of the HD Map to totally cover the <code>.fbx</code> file in the simulated world.</h4>
+<h4 id="d-set-transform-of-spawninfo-which-is-the-start-point-of-the-ego-vehicle-then-generate-a-new-cube-which-is-the-destination-information-of-the-ego-vehicle-adjust-its-location-and-attach-it-with-spawninfo">d. Set transform of <code>SpawnInfo</code>, which is the start point of the ego vehicle. Then generate a new cube which is the destination information of the ego vehicle, adjust its location and attach it with <code>SpawnInfo</code>.</h4>
+<h4 id="e-export-assetbundle-by-clicking-simulator---build">e. Export <code>AssetBundle</code> by clicking <code>Simulator</code> -&gt; <code>Build</code>.</h4>
+<h4 id="f-more-details-can-be-found-in-the-teaching-video-below">f. More details can be found in the teaching video below.</h4>
+<p>https://www.bilibili.com/video/BV1zF411G7T1/?spm_id_from=333.337.search-card.all.click&amp;vd_source=7386f2720c48abc24141dd69e7eed3ed</p>
+<h2 id="3-joint-simulation">3. Joint Simulation</h2>
+<h3 id="a-generate-apollo-map-files">A. Generate Apollo map files</h3>
+<h4 id="a-assetbundle-is-an-archive-containing-3d-scene-files-hd-map-and-textures-extract-hd-mapbasemapbin-into-apollo-project-you-should-create-a-directory-in-the">a. <code>AssetBundle</code> is an archive containing 3D scene files, HD map and textures. Extract HD map(<code>base_map.bin</code>) into Apollo project. You should create a directory in the</h4>
+<pre class="hljs"><code><div>apollo/modules/map/data
+</div></code></pre>
+<p>and put <code>base_map.bin</code> into it.</p>
+<h4 id="b-start-apollo-docker-and-generate-routing-map-and-sim-map-in-the-terminal-using-following-command">b. Start apollo docker and generate routing map and sim map in the terminal using following command.</h4>
+<pre class="hljs"><code><div>./scripts/generate_routing_topo_graph.sh --map_dir=&lt;dir&gt;
+</div></code></pre>
+<pre class="hljs"><code><div>bazel-bin/modules/map/tools/sim_map_generator --map_dir=&lt;dir&gt; --output_dir=&lt;dir&gt;
+</div></code></pre>
+<p>Tip:  <code>&lt;dir&gt;</code> is the path of <code>base_map.bin</code>.</p>
+<h3 id="b-generate-maps-in-simulator">B. Generate maps in simulator</h3>
+<h4 id="a-clone-sora-svl-and-build-it-the-detailed-steps-are-attached-in-its-repo">a. Clone <a href="https://github.com/YuqiHuai/SORA-SVL"><code>SORA-SVL</code></a> and build it. The detailed steps are attached in its repo.</h4>
+<pre class="hljs"><code><div>git clone https://github.com/YuqiHuai/SORA-SVL.git
+</div></code></pre>
+<h4 id="b-copy-the-archive-of-assetbundle-and-add-it-into-sora-svl-server-the-script-is-named-mapgeneratorpy-and-located-in-toolset">b. Copy the archive of <code>AssetBundle</code> and add it into <code>SORA-SVL</code> server. The script is named <code>map_generator.py</code> and located in <code>/toolset</code>.</h4>
+<h4 id="c-double-click-executable-file-simulator-in-the-project-of-sora-svl-open-browser-to-select-map-and-vihecle-and-you-can-start-simulation-by-writing-your-own-script-with-pythonapi-here-is-an-example-script-which-can-set-map-and-vehicle-start-apollos-modules-and-start-simulation">c. Double click executable file <code>Simulator</code> in the project of <code>SORA-SVL</code>, open browser to select map and vihecle, and you can start simulation by writing your own script with <code>PythonAPI</code>.  Here is an example script which can set map and vehicle, start Apollo's modules and start simulation.</h4>
+<pre class="hljs"><code><div>
+</div></code></pre>
+<h3 id="c-start-joint-simulation">C. Start Joint Simulation</h3>
+<h4 id="a-if-you-finished-scripts-with-pythonapi-you-can-bridge-simulator-and-apollo-to-start-joint-simulation">a. If you finished scripts with <code>PythonAPI</code>, you can bridge simulator and Apollo to start joint simulation.</h4>
+<h4 id="b-start-dreamview-by-the-following-command">b. Start Dreamview by the following command.</h4>
+<pre class="hljs"><code><div>bash ./scripts/bootstrap_lgsvl.sh
+</div></code></pre>
+<h4 id="c-start-bridge-funciton">c. Start bridge funciton.</h4>
+<pre class="hljs"><code><div>bash ./scripts/bridge.sh
+</div></code></pre>
+<p>More detailed steps can be found in the repo of <a href="https://github.com/ApolloAuto/apollo">Apollo</a>.</p>
+<h4 id="d-run-the-script-click-sim-control-in-the-dreamview-and-run-in-the-simulator">d. Run the script, click <code>Sim control</code> in the Dreamview and <code>Run</code> in the <code>Simulator</code>.</h4>
+
+</body>
+</html>

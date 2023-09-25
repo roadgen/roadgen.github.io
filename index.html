@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-<!-- <title>Page Title</title> -->
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>ROADGEN: Generating Road Scenarios for Autonomous Vehicle Testing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="header">
+        <h1>ROADGEN</h1>
+        <p>Generating Road Scenarios for Autonomous Vehicle Testing</p>
+    </div>
 
-<h1>Welcome to ROADGEN</h1>
+    <h2>Application Demo</h2>
+    <div class="video-group-container" id="app-demo-video-containers">
+        <div class="video-container">
+            <video src="assets/application-demo/3d-scene.mov" autoplay controls loop></video>
+            <p>3D Scene</p>
+        </div>
+        <div class="video-container">
+            <video src="assets/application-demo/hdmap.mov" autoplay controls loop></video>
+            <p>HDMap</p>
+        </div>
+        <div class="video-container">
+            <video src="assets/application-demo/joint-simulation.mov" autoplay controls loop></video>
+            <p>Joint Simulation</p>
+        </div>
+    </div>
+    <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+    <h2>Work Overview</h2>
+    <h3><a href="assets/document.html" target="_blank">Click here to view the document tutorial</a></h3>
+    <div class="video-group-container" id="work-overview-video-containers">
+        <div class="video-container">
+            <video src="assets/work-overview/overview.mov" controls></video>
+        </div>
+    </div>
 
-</body>
+    <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+    <h2>Experiment Result</h2>
+
+    <h3 class="fig-title">The Number of Deduplicated Road Scenarios and Uniqueness Rate of ROADGEN and RAND over Time</h3>
+
+    <div class="pic-group-container" id="experiment-result-pic-containers">
+        <div class="pic-container">
+            <img src="assets/experiment-result/4-road-components.jpg">
+            <p>4 Road Components</p>
+        </div>
+        <div class="pic-container">
+            <img src="assets/experiment-result/6-road-components.jpg">
+            <p>6 Road Components</p>
+        </div>
+        <div class="pic-container">
+            <img src="assets/experiment-result/8-road-components.jpg">
+            <p>8 Road Components</p>
+        </div>
+    </div>
+
+    <h3>Detailed Data of Number of Deduplicated Road Scenarios and Uniqueness Rate of ROADGEN and RAND over Time</h3>
+    <form action="">
+        <div class="ratio-group" id="show-type-group">
+            <label class="form-control"><input type="radio" name="show-type" value="RAND" checked/> RAND</label>
+            <label class="form-control"><input type="radio" name="show-type" value="ROADGEN" /> ROADGEN</label>
+        </div>
+        <div class="ratio-group" id="indicators-group">
+            <label class="form-control"><input type="radio" name="indicators" value="Total Number" checked/>Total Number</label>
+            <label class="form-control"><input type="radio" name="indicators" value="Available Number"/>Number of Deduplicated Road Scenarios</label>
+            <label class="form-control"><input type="radio" name="indicators" value="Availability"/>Uniqueness Rate</label>
+        </div>
+    </form>
+
+    <div class="table-container" id="dataset-table-container">
+        <table class="pure-table" id="result-table">
+        </table>
+    </div>
+
+    <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+
+    <h2>Map Dataset</h2>
+    <form action="">
+        <div class="ratio-group" id="dataset-group">
+            <label class="form-control"><input type="radio" name="dataset" value="4" checked/>4 Components</label>
+            <label class="form-control"><input type="radio" name="dataset" value="5"/>5 Components</label>
+            <label class="form-control"><input type="radio" name="dataset" value="6"/>6 Components</label>
+            <label class="form-control"><input type="radio" name="dataset" value="7"/>7 Components</label>
+            <label class="form-control"><input type="radio" name="dataset" value="8"/>8 Components</label>
+        </div>
+    </form>
+
+    <div id="map-dataset-overall-container"></div>
+    
+    <script src="script.js"></script>
+  </body>
 </html>
