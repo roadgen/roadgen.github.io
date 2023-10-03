@@ -12,7 +12,16 @@
         <p>Generating Road Scenarios for Autonomous Vehicle Testing</p>
     </div>
 
-    <h2>Application Demo</h2>
+    <div class="navigation">
+        <button onclick="scrollToSection('section-application-demo')" class="navigation-button">Application Demo</button>
+        <button onclick="scrollToSection('section-work-overview')"  class="navigation-button">Work Overview</button>
+        <button onclick="scrollToSection('section-experiment-result')" class="navigation-button">Experiment Result</button>
+        <button onclick="scrollToSection('section-map-dataset')" class="navigation-button">Map Dataset</button>
+        <button onclick="openDocument()" class="navigation-button">Document</button>
+    </div>
+
+    <h2 id="section-application-demo">Application Demo</h2>
+
     <div class="video-group-container" id="app-demo-video-containers">
         <div class="video-container">
             <video src="assets/application-demo/3d-scene.mov" autoplay controls loop></video>
@@ -28,16 +37,15 @@
         </div>
     </div>
     <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
-    <h2>Work Overview</h2>
-    <h3><a href="assets/document.html" target="_blank">Click here to view the document tutorial</a></h3>
+    <h2 id="section-work-overview">Work Overview</h2>
     <div class="video-group-container" id="work-overview-video-containers">
-        <div class="video-container">
-            <video src="assets/work-overview/overview.mov" controls></video>
+        <div class="video-container" style="background-color:#11252a;border-radius: 12px;">
+            <video src="assets/work-overview/overview.mov" controls style="width: 95%;height: 95%;"></video>
         </div>
     </div>
 
     <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
-    <h2>Experiment Result</h2>
+    <h2 id="section-experiment-result">Experiment Result</h2>
 
     <h3 class="fig-title">The Number of Deduplicated Road Scenarios and Uniqueness Rate of ROADGEN and RAND over Time</h3>
 
@@ -76,7 +84,7 @@
 
     <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
 
-    <h2>Map Dataset</h2>
+    <h2 id="section-map-dataset">Map Dataset</h2>
     <form action="">
         <div class="ratio-group" id="dataset-group">
             <label class="form-control"><input type="radio" name="dataset" value="4" checked/>4 Components</label>

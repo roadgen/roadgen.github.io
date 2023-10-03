@@ -240,3 +240,45 @@ td,th {
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
   }
+
+.navigation{
+    margin:10px auto 0 auto;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: #26585f;
+    width:90%;
+}
+
+/* 基本按钮样式 */
+.navigation-button {
+    padding: 10px 20px; /* 保留上下内边距和按钮宽度 */
+    background-color: #26585f;
+    color:#ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: none; /* 去除按钮边框 */
+    margin: 0 5px; /* 左右外边距相等，调整按钮之间的间距 */
+    flex:1;
+}
+
+/* 鼠标悬停效果 */
+.navigation-button:hover {
+    background-color: #192f2b; /* 灰色背景 */
+    color: #ffffff; /* 白色字体 */
+}
+
+/* 鼠标点击效果 */
+.navigation-button:active {
+    background-color: #26585f; /* 深灰色背景 */
+    color: #ffffff; /* 白色字体 */
+}
+
+/* 分界线样式 */
+.navigation-button + .navigation-button {
+    border-left: 1px solid #192f2b; /* 左侧分界线 */
+    margin-left: -10px;
+}

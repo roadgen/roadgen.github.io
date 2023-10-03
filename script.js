@@ -111,3 +111,13 @@ function mapChooseChange(){
 
 reloadMap(4);
 document.getElementById("dataset-group").addEventListener("change", mapChooseChange);
+
+function scrollToSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+    }
+}
+function openDocument() {
+    window.open("assets/document.html", "_blank");
+}
