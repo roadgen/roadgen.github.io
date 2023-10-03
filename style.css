@@ -247,7 +247,7 @@ td,th {
     flex-grow: 1;
     justify-content: space-between;
     background-color: #26585f;
-    width:90%;
+    width:91%;
 }
 
 /* 基本按钮样式 */
@@ -257,7 +257,7 @@ td,th {
     color:#ffffff;
     text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border: none; /* 去除按钮边框 */

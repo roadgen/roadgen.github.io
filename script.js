@@ -18,7 +18,7 @@ function initTable() {
 
     // 创建内容
     const tbody = resultTable.createTBody();
-    for (let i = 1; i <= 24; i++) {
+    for (let i = 1; i <= 12; i++) {
         const tr = tbody.insertRow();
         const td_hour = document.createElement("td");
         td_hour.textContent = i;
@@ -38,7 +38,7 @@ function updateTable(path) {
         url: path,
         success: function(data){
             let rows = data.split("\n");
-            for(let i = 1; i < 25; i++){
+            for(let i = 1; i < 13; i++){
                 let row = rows[i].split(",");
                 let tbody = resultTable.tBodies[0];
                 let tr = tbody.rows[i-1];
@@ -120,4 +120,8 @@ function scrollToSection(sectionId) {
 }
 function openDocument() {
     window.open("assets/document.html", "_blank");
+}
+
+function openSourceCode() {
+    window.open("https://github.com/roadgen/RoadGen", "_blank");
 }
